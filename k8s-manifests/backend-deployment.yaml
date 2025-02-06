@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: ncaregistryjunaid.azurecr.io/backendimage:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          value: "postgres://Student%40na-dbserver-flex-junaid:Pa55w0rd1234@na-dbserver-flex-junaid.postgres.database.azure.com:5432/cnainventory"
